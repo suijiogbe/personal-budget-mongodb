@@ -158,10 +158,10 @@
                 {
                     data: [],
                     backgroundColor: [
-                        '#ffcd56',
-                        '#ff6384',
-                        '#36a2eb',
-                        '#fd6b19',
+                        // '#ffcd56',
+                        // '#ff6384',
+                        // '#36a2eb',
+                        // '#fd6b19',
                     ]
                 }
             ],
@@ -220,7 +220,7 @@
         var key = function(d){ return d.data.label; };
 
         var color = d3.scale.ordinal()
-            .range(chartColor);
+        //     .range(chartColor);
 
 
         function change(data) {
@@ -320,17 +320,22 @@
 
     /* ------- axios -------*/
         function getBudget() {
-            axios.get('/http://localhost:3000/budget')
+            axios.get('http://localhost:3000/budget')
             .then(function (res) {
                 for (var i = 0; i < res.data.myBudget.length; i++) {
                     dataSource.datasets[0].data[i] = res.data.myBudget[i].budget;
+                    dataSource.datasets[0].backgroundColor[i] = res.data.myBudget[i].color;
                     dataSource.labels[i] = res.data.myBudget[i].title;
                 }
                 createChart();
 
                 var d3Data = res.data.myBudget.map(function(item) {
-                  return { label: item.title, value: item.budget };
+                  return { label: item.title, value: item.budget, color: item.color };
                 });
+
+                color.domain(d3Data.map(d => d.label))
+                    .range(d3Data.map(d => d.color));
+                
                 change(d3Data);
             });
         }

@@ -1,5 +1,5 @@
 {
-  "name": "personal-budget1",
+  "name": "personal-budget-mongodb",
   "version": "1.0.0",
   "description": "The path to NGInx main folder: /usr/share/nginx/html",
   "main": "server.js",
@@ -9,12 +9,15 @@
   },
   "repository": {
     "type": "git",
-    "url": "git@school:suijiogbe/personal-budget1.git"
+    "url": "git@school:suijiogbe/personal-budget-mongodb.git"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "express": "^5.1.0"
-  }
+    "express": "^5.1.0",
+    "mongodb": "^6.20.0",
+    "mongoose": "^8.19.1"
+  },
+  "type": "commonjs"
 }
